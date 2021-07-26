@@ -1,7 +1,7 @@
 import os
 import tmdbsimple as tmdb
 
-tmdb.API_KEY = ''
+tmdb.API_KEY = 'b4bf9b38aa8253a44598435f8fb13000'
 
 #escoger lenguaje 
 # input 1 para espanol y 2 para ingles
