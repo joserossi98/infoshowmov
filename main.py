@@ -23,7 +23,7 @@ while True:
     elif opcion == "1":
       print(productora.buscarShow(input("busca una serie: ")));
     elif opcion == "2":
-      print(productora.buscar_actores(input("busca un actor/actriz: ")));
+      print(productora.buscar_actores(str(input("busca un actor/actriz: "))));
     elif opcion == "3":
       print(productora.top_peliculas());
     elif opcion == "4":
