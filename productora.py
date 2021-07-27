@@ -66,20 +66,24 @@ def buscarShow(nombreshow):
 def buscar_actores(actores):
     #obtenemos id de actor/actriz
     response = requests.get('https://api.themoviedb.org/3/search/person?api_key='+ API_KEY +'&language=en-US&query='+ actores +'&include_adult=false')
-    id_actores = response.json();
-    id = id_actores['results'][0]['id'],
+    nombre_actores = response.json();
+    id = nombre_actores['results'][0]['id']
 
     #obtenemos el nombre del actor/actriz y peliculas y series en las aparece
     response = requests.get('https://api.themoviedb.org/3/person/'+ str(id) +'/combined_credits?api_key='+ API_KEY +'&language=en-US');
-    participaciones_actores = response.json();
-    actores = [];
-    
-    for actor in participaciones_actores['cast']:
-        actores.append(actor['original_name'])
+    actores = response.json();
+    participaciones = "";
 
-    return f"{actores}"
+    for actor in actores['cast']:
+        if 'original_title' in actor:
+            participaciones += actor['original_title'] + "\n";
+        elif 'original_name' in actor:
+            participaciones += actor['original_name'] + "\n";
+        
+
+    return f"{participaciones}"
+
    
-
 #top 10 peliculas y series
 def top_series():
     response = requests.get('https://api.themoviedb.org/3/tv/top_rated?api_key='+ API_KEY +'&language=en-US&page=1');
