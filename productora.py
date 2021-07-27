@@ -72,10 +72,10 @@ def buscar_actores(actores):
     #obtenemos el nombre del actor/actriz y peliculas y series en las aparece
     response = requests.get('https://api.themoviedb.org/3/person/'+ str(id) +'/combined_credits?api_key='+ API_KEY +'&language=en-US');
     actores = response.json();
-    participaciones = [];
+    participaciones = "";
 
-    for actor in actores['crew']:
-        participaciones.append(actor['original_name'])
+    for actor in actores['cast']:
+        participaciones += actor['original_name'] + "\n";
 
 
     return f"{participaciones}"
